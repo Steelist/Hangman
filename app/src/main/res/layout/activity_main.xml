@@ -12,8 +12,13 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_weight="0.2"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_weight="0.2">
+        android:layout_weight="0.15">
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,19 +30,41 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="0.8">
+        android:orientation="vertical"
+        android:layout_weight="0.65">
 
         <Button
+            android:width="150dp"
+            android:height="60dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Single player"/>
+            android:layout_marginBottom="5dp"
+            android:text="Single player"
+            android:onClick="startSingleplayerGame"/>
 
         <Button
+            android:width="150dp"
+            android:height="60dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Multiplayer"
-            android:onClick="startGame"/>
+            android:onClick="startMultiplayerGame"/>
+
+        <Button
+            android:width="150dp"
+            android:height="60dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Highscores"/>
+
+        <Button
+            android:width="150dp"
+            android:height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"/>
     </LinearLayout>
 
 

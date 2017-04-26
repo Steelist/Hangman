@@ -12,13 +12,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
     }
 
-    public void startGame(View view) {
+    public void startMultiplayerGame(View view) {
         startActivity(new Intent(this, Multiplayer.class));
+    }
+
+    public void startSingleplayerGame(View view) {
+        startActivity(new Intent(this, Singleplayer.class));
     }
 }

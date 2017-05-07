@@ -1,16 +1,12 @@
 package fi.example.aleksi.hangman;
 
 import android.app.AlertDialog;
-import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputFilter;
 import android.text.InputType;
-import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,16 +15,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Created by Aleksi on 16.4.2017.
+ * Created by Aleksi on 23.4.2017.
  */
 
-public class Multiplayer extends AppCompatActivity {
-    int GUESSES_LEFT;
+public class Singleplayer extends AppCompatActivity {
     TextView toGuess;
     EditText guess;
     String hidden = "";
     private String word = "";
+    StringDatabase db;
     int wordLength;
+    int GUESSES_LEFT;
+    int rng;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,60 +34,35 @@ public class Multiplayer extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_multiplayer);
+        setContentView(R.layout.activity_singleplayer);
 
         GUESSES_LEFT = getResources().getInteger(R.integer.GUESSES_LEFT);
-        toGuess = (TextView)findViewById(R.id.toguess);
         guess = (EditText)findViewById(R.id.letter);
+        toGuess = (TextView)findViewById(R.id.toguess);
+        rng = (int) (5 * Math.random()) + 1;
 
-        initialDialog();
+        databaseFetching();
     }
 
-    public void initialDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
-        builder.setTitle("Type a secret to guess!");
-        builder.setMessage("(Length between 3 and 16)");
+    public void databaseFetching() {
+        db = new StringDatabase(this);
 
-        final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
-        input.setFilters(new InputFilter[] { new InputFilter.LengthFilter(16)});
+        Cursor cursor = db.getOneString(rng);
+        cursor.moveToFirst();
+        word = cursor.getString(cursor.getColumnIndex("content")).toUpperCase();
+        cursor.close();
+        wordLength = word.length();
 
-        builder.setView(input);
-
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                if (input.getText().toString().length() >= 3) {
-                    word = input.getText().toString().toUpperCase();
-                    wordLength = word.length();
-
-                    for (int i = 0; i < wordLength; i++) {
-                        if (word.charAt(i) != ' ') {
-                            hidden += "_";
-                        } else {
-                            hidden += " ";
-                        }
-                    }
-
-                    toGuess.setText(hidden);
-                    toGuess.setLetterSpacing((float) 0.5);
-                } else {
-                    Toast.makeText(Multiplayer.this, "More than 3!", Toast.LENGTH_LONG).show();
-                    recreate();
-                }
+        for (int i = 0; i < wordLength; i++) {
+            if (word.charAt(i) != ' ') {
+                hidden += "_";
+            } else {
+                hidden += " ";
             }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(Multiplayer.this, "Maybe next time!", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        });
+        }
 
-        builder.show();
+        toGuess.setText(hidden);
+        toGuess.setLetterSpacing((float)0.5);
     }
 
     public void guessing(View view) {
@@ -136,13 +109,13 @@ public class Multiplayer extends AppCompatActivity {
         builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                recreate();
+            recreate();
             }
         });
         builder.setNegativeButton("Main menu", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(Multiplayer.this, "That's unfortunate!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Singleplayer.this, "Too bad!", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -165,7 +138,7 @@ public class Multiplayer extends AppCompatActivity {
         builder.setNegativeButton("End game", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(Multiplayer.this, "Hope you enjoyed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Singleplayer.this, "Sweet victory!", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

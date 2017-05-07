@@ -25,4 +25,12 @@ public class MainActivity extends AppCompatActivity {
     public void startSingleplayerGame(View view) {
         startActivity(new Intent(this, Singleplayer.class));
     }
+
+    public void startHighscore(View v) {
+        startActivity(new Intent(this, Highscore.class));
+    }
+
+    public void startSettings(View v) {
+        startActivity(new Intent(this, Settings.class));
+    }
 }

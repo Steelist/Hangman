@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:textAlignment="center"
     android:gravity="center"
-    tools:context="fi.example.aleksi.hangman.MainActivity">
+    tools:context="fi.example.aleksi.hangman.MainActivity"
+    android:background="@drawable/background">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -33,7 +34,7 @@
         android:orientation="vertical"
         android:layout_weight="0.65">
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:width="150dp"
             android:height="60dp"
             android:layout_width="wrap_content"

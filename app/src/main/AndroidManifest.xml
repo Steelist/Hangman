@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fi.example.aleksi.hangman">
 
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_hangman"
@@ -9,17 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_hangman_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Multiplayer"></activity>
-        <activity android:name=".Singleplayer"></activity>
-        <activity android:name=".Highscore"></activity>
-        <activity android:name=".Settings"></activity>
+        <activity android:name=".Multiplayer" android:screenOrientation="portrait"></activity>
+        <activity android:name=".Singleplayer" android:screenOrientation="portrait"></activity>
+        <activity android:name=".Highscore" android:screenOrientation="portrait"></activity>
+        <activity android:name=".Settings" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@drawable/hangman_grass">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="0.15"
-        android:paddingTop="20dp">
+        android:paddingTop="30dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,26 +23,68 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_weight="0.05">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guessedLetters"
+            android:textSize="22dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="0.1">
 
-        <!-- Add the pictures for wrong guesses -->
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            />
+            android:id="@+id/fault1"
+            android:src="@drawable/wrong_marker"
+            android:layout_margin="2dp"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fault2"
+            android:src="@drawable/wrong_marker"
+            android:layout_margin="2dp"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fault3"
+            android:src="@drawable/wrong_marker"
+            android:layout_margin="2dp"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fault4"
+            android:src="@drawable/wrong_marker"
+            android:layout_margin="2dp"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fault5"
+            android:src="@drawable/wrong_marker"
+            android:layout_margin="2dp"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/fault6"
+            android:src="@drawable/wrong_marker"
+            android:layout_margin="2dp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.45">
+        android:layout_weight="0.4">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/hangman_stage"
-            android:paddingLeft="50dp"
-            />
+            android:paddingLeft="50dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,5 +108,4 @@
             android:text="Submit a letter"
             android:onClick="guessing"/>
     </LinearLayout>
-
 </LinearLayout>

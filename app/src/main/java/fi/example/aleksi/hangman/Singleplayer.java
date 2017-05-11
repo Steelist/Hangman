@@ -433,6 +433,9 @@ public class Singleplayer extends AppCompatActivity {
         }
     }
 
+    /*
+    Guides how an image view should be animated and then starts it.
+     */
     public void markAnimation(ImageView mark) {
         ObjectAnimator anim = ObjectAnimator.ofFloat(mark, "rotation", 0, -1080);
         anim.setDuration(1500);
